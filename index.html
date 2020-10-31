@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle</title>
+</head>
+
+<body>
+  <main>
+    <form data-bind="submit: salva">
+      <label for="descricao">Descrição</label>
+      <input data-bind="value: descricao" id="descricao" type="text" />
+      <label for="valor">Valor</label>
+      <input data-bind="textInput: valor" id="valor" type="text" />
+      <button type="submit">Adicionar</button>
+    </form>
+
+  </main>
+</body>
+
+<script type="text/javascript" src="node_modules/knockout/build/output/knockout-latest.js"></script>
+<script type="text/javascript" src="index.js"></script>
+
+</html>
