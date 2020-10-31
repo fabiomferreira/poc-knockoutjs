@@ -13,32 +13,38 @@
 <body>
   <main class="container">
     <h1>Finanças</h1>
-    <form class="form" data-bind="submit: salva">
-      <span class="float-right">Saldo: <span data-bind="text: saldo"> </span></span>
-      <div data-bind="class: alerta.tipo, text: alerta.mensagem" class="alert" role="alert">
+    <form class="form-row" data-bind="submit: salva">
+      <div class="col-xs-12 col-sm-12">
+        <span class="float-right">Saldo: <span data-bind="text: saldo"> </span></span>
       </div>
-      <div class="form-group">
-
+      <div data-bind="class: alerta.tipo, text: alerta.mensagem" class="alert col-xs-12 col-sm-12" role="alert">
+      </div>
+      <div class="form-group col-xs-12 col-sm-12 col-md-6">
         <label for="descricao">Descrição</label>
         <input data-bind="value: descricao" class="form-control" id="descricao" type="text" />
       </div>
-      <div class="form-group">
+      <div class="form-group col-xs-12 col-sm-12 col-md-6">
         <label for="valor">Valor</label>
         <input data-bind="textInput: valor" class="form-control" id="valor" type="text" />
       </div>
-      <div class="form-check">
-        <input data-bind="checked: tipo" id="despesa" class="form-check-input" value="despesa" type="radio" />
-        <label class="form-check-label" for="despesa">
-          Despesa
-        </label>
+      <div class="form-group col">
+        <label>Tipo</label>
+        <div class="form-check">
+          <input data-bind="checked: tipo" id="despesa" class="form-check-input" value="despesa" type="radio" />
+          <label class="form-check-label" for="despesa">
+            Despesa
+          </label>
+        </div>
+        <div class="form-check">
+          <input data-bind="checked: tipo" id="receita" class="form-check-input" value="receita" type="radio" />
+          <label class="form-check-label" for="receita">
+            Receita
+          </label>
+        </div>
       </div>
-      <div class="form-check">
-        <input data-bind="checked: tipo" id="receita" class="form-check-input" value="receita" type="radio" />
-        <label class="form-check-label" for="receita">
-          Receita
-        </label>
+      <div class="col-xs-12 col-sm-12">
+        <button class="btn btn-primary float-right" type="submit">Adicionar</button>
       </div>
-      <button class="btn btn-primary" type="submit">Adicionar</button>
     </form>
 
 
