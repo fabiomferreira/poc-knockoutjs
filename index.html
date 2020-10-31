@@ -14,7 +14,9 @@
   <main class="container">
     <h1>Finanças</h1>
     <form class="form" data-bind="submit: salva">
-
+      <span class="float-right">Saldo: <span data-bind="text: saldo"> </span></span>
+      <div data-bind="class: alerta.tipo, text: alerta.mensagem" class="alert" role="alert">
+      </div>
       <div class="form-group">
 
         <label for="descricao">Descrição</label>
@@ -39,7 +41,6 @@
       <button class="btn btn-primary" type="submit">Adicionar</button>
     </form>
 
-    <span>Saldo: <span data-bind="text: saldo"> </span></span>
 
     <h2>Receitas</h2>
     <table class="table">
@@ -56,8 +57,14 @@
           <td data-bind="text: descricao"></td>
           <td data-bind="text: valor"></td>
           <td>
-            <button data-bind="click: $parent.remover">Remover</button>
-            <button data-bind="click: $parent.editar">Editar</button>
+            <button data-bind="click: $parent.remover" type="button" class="btn btn-danger" data-toggle="modal"
+              data-target="#modalConfirmacao">
+              <i class="fas fa-trash"></i>
+            </button>
+            <button data-bind="click: $parent.editar" type="button" class="btn btn-primary" data-toggle="modal"
+              data-target="#modalConfirmacao">
+              <i class="fas fa-edit"></i>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -78,17 +85,50 @@
           <td data-bind="text: descricao"></td>
           <td data-bind="text: valor"></td>
           <td>
-            <button data-bind="click: $parent.remover">Remover</button>
-            <button data-bind="click: $parent.editar">Editar</button>
+            <button data-bind="click: $parent.remover" type="button" class="btn btn-danger" data-toggle="modal"
+              data-target="#modalConfirmacao">
+              <i class="fas fa-trash"></i>
+            </button>
+            <button data-bind="click: $parent.editar" type="button" class="btn btn-primary" data-toggle="modal"
+              data-target="#modalConfirmacao">
+              <i class="fas fa-edit"></i>
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
-
   </main>
-</body>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
-<script type="text/javascript" src="index.js"></script>
+  <!-- Modal -->
+  <div class="modal fade" id="modalConfirmacao" tabindex="-1" aria-labelledby="modalConfirmacaoLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalConfirmacaoLabel">Atenção</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div data-bind="text: modal.mensagem" class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+          <button data-bind="click: modal.callback" type="button" class="btn btn-primary"
+            data-dismiss="modal">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://kit.fontawesome.com/40a4ed426e.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+</body>
 
 </html>

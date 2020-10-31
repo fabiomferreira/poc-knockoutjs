@@ -22,6 +22,14 @@ function AppViewModel() {
   self.descricao = ko.observable('');
   self.valor = ko.observable('');
   self.tipo = ko.observable('despesa');
+  self.alerta = {
+    tipo: ko.observable(''),
+    mensagem: ko.observable('')
+  }
+  self.modal = {
+    mensagem: ko.observable(''),
+    callback: () => console.log('test'),
+  }
 
   self.despesas = ko.observableArray();
   self.receitas = ko.observableArray();
@@ -39,7 +47,8 @@ function AppViewModel() {
     const valor = this.valor();
     const tipo = this.tipo();
     if(!descricao || !valor || parseFloat(extraiNumeros(valor)) === 0) {
-      alert('Verifique os campos obrigatórios.');
+      self.alerta.mensagem('Verifique os campos.');
+      self.alerta.tipo('alert-danger');
       return;
     }
     if(tipo === 'despesa') {
@@ -49,7 +58,8 @@ function AppViewModel() {
     }
     this.descricao('');
     this.valor('');
-    alert('Salvo com sucesso!');
+    self.alerta.mensagem('Salvo com sucesso!');
+    self.alerta.tipo('alert-success');
   }
 
   self.saldo = ko.computed(() => {
@@ -62,24 +72,30 @@ function AppViewModel() {
   })
 
   self.remover = function(registro) {
-    if(!confirm("Tem certeza que deseja excluir esse registro?")) return;
-    if(registro.tipo === 'despesa') {
-      self.despesas.remove(registro);
-    } else {
-      self.receitas.remove(registro);
-    }
+    self.modal.mensagem('Você tem certeza que deseja remover esse registro?');
+    self.modal.callback = () => {
+      if(registro.tipo === 'despesa') {
+        self.despesas.remove(registro);
+      } else {
+        self.receitas.remove(registro);
+      }
+      self.alerta.tipo('alert-success');
+      self.alerta.mensagem('Registro removido com sucesso!');
+    };
   }
 
   self.editar = function(registro) {
-    if(!confirm("Tem certeza que deseja editar esse registro?")) return;
-    if(registro.tipo === 'despesa') {
-      self.despesas.remove(registro);
-    } else {
-      self.receitas.remove(registro);
-    }
-    self.descricao(registro.descricao);
-    self.valor(registro.valor);
-    self.tipo(registro.tipo);
+    self.modal.mensagem('Você tem certeza que deseja editar esse registro?');
+    self.modal.callback = () => {
+      if(registro.tipo === 'despesa') {
+        self.despesas.remove(registro);
+      } else {
+        self.receitas.remove(registro);
+      }
+      self.descricao(registro.descricao);
+      self.valor(registro.valor);
+      self.tipo(registro.tipo);
+    };
   }
 }
 
