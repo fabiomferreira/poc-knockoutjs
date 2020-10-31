@@ -11,31 +11,43 @@
 </head>
 
 <body>
-  <main>
+  <main class="container">
     <h1>Finanças</h1>
-    <form data-bind="submit: salva">
+    <form class="form" data-bind="submit: salva">
 
-      <label for="descricao">Descrição</label>
-      <input data-bind="value: descricao" id="descricao" type="text" />
-      <label for="valor">Valor</label>
-      <input data-bind="textInput: valor, event: {keyup: handleValor}" id="valor" type="text" />
-      <button type="submit">Adicionar</button>
-      <label>
-        <input data-bind="checked: tipo" value="despesa" type="radio" /> Despesa
-      </label>
-      <label>
-        <input data-bind="checked: tipo" value="receita" type="radio" /> Receita
-      </label>
+      <div class="form-group">
+
+        <label for="descricao">Descrição</label>
+        <input data-bind="value: descricao" class="form-control" id="descricao" type="text" />
+      </div>
+      <div class="form-group">
+        <label for="valor">Valor</label>
+        <input data-bind="textInput: valor, event: {keyup: handleValor}" class="form-control" id="valor" type="text" />
+      </div>
+      <div class="form-check">
+        <input data-bind="checked: tipo" id="despesa" class="form-check-input" value="despesa" type="radio" />
+        <label class="form-check-label" for="despesa">
+          Despesa
+        </label>
+      </div>
+      <div class="form-check">
+        <input data-bind="checked: tipo" id="receita" class="form-check-input" value="receita" type="radio" />
+        <label class="form-check-label" for="receita">
+          Receita
+        </label>
+      </div>
+      <button class="btn btn-primary" type="submit">Adicionar</button>
     </form>
 
     <span>Saldo: <span data-bind="text: saldo"> </span></span>
 
     <h2>Receitas</h2>
-    <table>
-      <thead>
+    <table class="table">
+      <thead class="thead-dark">
         <tr>
-          <th>Descrição</th>
-          <th>Valor</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Valor</th>
+          <th scole="col"></th>
         </tr>
         </tr>
       </thead>
@@ -52,11 +64,12 @@
     </table>
 
     <h2>Despesas</h2>
-    <table>
-      <thead>
+    <table class="table">
+      <thead class="thead-dark">
         <tr>
-          <th>Descrição</th>
-          <th>Valor</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Valor</th>
+          <th scole="col"></th>
         </tr>
         </tr>
       </thead>
