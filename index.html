@@ -43,6 +43,10 @@
         <tr>
           <td data-bind="text: descricao"></td>
           <td data-bind="text: valor"></td>
+          <td>
+            <button data-bind="click: $parent.remover">Remover</button>
+            <button data-bind="click: $parent.editar">Editar</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -60,6 +64,10 @@
         <tr>
           <td data-bind="text: descricao"></td>
           <td data-bind="text: valor"></td>
+          <td>
+            <button data-bind="click: $parent.remover">Remover</button>
+            <button data-bind="click: $parent.editar">Editar</button>
+          </td>
         </tr>
       </tbody>
     </table>
