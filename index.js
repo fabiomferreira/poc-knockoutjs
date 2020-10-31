@@ -29,7 +29,7 @@ function AppViewModel() {
   }
   self.modal = {
     mensagem: ko.observable(''),
-    callback: () => console.log('test'),
+    callback: () => {},
   }
 
   self.despesas = ko.observableArray();
@@ -99,5 +99,40 @@ function AppViewModel() {
     };
   }
 }
+
+ko.components.register('tabela-registros', {
+  viewModel: function(params) {
+      this.items = params.value;
+      this.remover = params.remover;
+      this.editar = params.editar;
+  },
+  template:
+    `<table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Descrição</th>
+          <th scope="col">Valor</th>
+          <th scole="col"></th>
+        </tr>
+        </tr>
+      </thead>
+      <tbody data-bind="foreach: items">
+        <tr>
+          <td data-bind="text: descricao"></td>
+          <td data-bind="text: valor"></td>
+          <td align="right">
+            <button data-bind="click: $parent.remover" type="button" class="btn btn-danger" data-toggle="modal"
+              data-target="#modalConfirmacao">
+              <i class="fas fa-trash"></i>
+            </button>
+            <button data-bind="click: $parent.editar" type="button" class="btn btn-primary" data-toggle="modal"
+              data-target="#modalConfirmacao">
+              <i class="fas fa-edit"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>`
+});
 
 ko.applyBindings(new AppViewModel());

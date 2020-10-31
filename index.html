@@ -47,62 +47,11 @@
       </div>
     </form>
 
-
     <h2>Receitas</h2>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Descrição</th>
-          <th scope="col">Valor</th>
-          <th scole="col"></th>
-        </tr>
-        </tr>
-      </thead>
-      <tbody data-bind="foreach: receitas">
-        <tr>
-          <td data-bind="text: descricao"></td>
-          <td data-bind="text: valor"></td>
-          <td align="right">
-            <button data-bind="click: $parent.remover" type="button" class="btn btn-danger" data-toggle="modal"
-              data-target="#modalConfirmacao">
-              <i class="fas fa-trash"></i>
-            </button>
-            <button data-bind="click: $parent.editar" type="button" class="btn btn-primary" data-toggle="modal"
-              data-target="#modalConfirmacao">
-              <i class="fas fa-edit"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <tabela-registros params="value: receitas, remover: remover, editar: editar"></tabela-registros>
 
     <h2>Despesas</h2>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Descrição</th>
-          <th scope="col">Valor</th>
-          <th scole="col"></th>
-        </tr>
-        </tr>
-      </thead>
-      <tbody data-bind="foreach: despesas">
-        <tr>
-          <td data-bind="text: descricao"></td>
-          <td data-bind="text: valor"></td>
-          <td align="right">
-            <button data-bind="click: $parent.remover" type="button" class="btn btn-danger" data-toggle="modal"
-              data-target="#modalConfirmacao">
-              <i class="fas fa-trash"></i>
-            </button>
-            <button data-bind="click: $parent.editar" type="button" class="btn btn-primary" data-toggle="modal"
-              data-target="#modalConfirmacao">
-              <i class="fas fa-edit"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <tabela-registros params="value: despesas, remover: remover, editar: editar"></tabela-registros>
   </main>
 
   <!-- Modal -->
