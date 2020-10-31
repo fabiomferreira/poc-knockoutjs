@@ -21,6 +21,7 @@ function AppViewModel() {
 
   self.descricao = ko.observable('');
   self.valor = ko.observable('');
+  self.valor.subscribe(handleValor);
   self.tipo = ko.observable('despesa');
   self.alerta = {
     tipo: ko.observable(''),
@@ -34,14 +35,14 @@ function AppViewModel() {
   self.despesas = ko.observableArray();
   self.receitas = ko.observableArray();
 
-  self.handleValor = function () {
-    const valor = this.valor();
+  function handleValor(valor) {
     if(!valor) return;
     const numero = extraiNumeros(valor);
     const dinheiro = formatter.format(numero);
 
-    this.valor(dinheiro)
+    self.valor(dinheiro)
   }
+
   self.salva = function () {
     const descricao = this.descricao();
     const valor = this.valor();
