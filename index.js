@@ -1,8 +1,14 @@
 const formatter = new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'});
+
 function extraiNumeros(string) {
     const numeros = string.match(/\d+/g); 
     return numeros ? numeros.join('') / 100 : 0;
 } 
+
+function somaReducer(a, b) {
+  return a + b;
+}
+
 function AppViewModel() {
   this.descricao = ko.observable('');
   this.valor = ko.observable('');
@@ -35,6 +41,17 @@ function AppViewModel() {
     this.valor('');
     alert('Salvo com sucesso!');
   }
+
+  this.saldo = ko.computed(() => {
+    const despesas = this.despesas.slice();
+    const receitas = this.receitas.slice();
+    const totalDespesas = despesas.length ? despesas.map(d => extraiNumeros(d.valor)).reduce(somaReducer) : 0;
+    const totalReceitas = receitas.length ?  receitas.map(d => extraiNumeros(d.valor)).reduce(somaReducer) : 0;
+
+    console.log(totalDespesas, totalReceitas)
+
+    return formatter.format(totalReceitas - totalDespesas);
+  })
 }
 
 ko.applyBindings(new AppViewModel());
