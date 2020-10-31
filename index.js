@@ -6,8 +6,11 @@ function extraiNumeros(string) {
 function AppViewModel() {
   this.descricao = ko.observable('');
   this.valor = ko.observable('');
+  this.tipo = ko.observable('despesa');
 
-  this.despesas = ko.observableArray()
+  this.despesas = ko.observableArray();
+  this.receitas = ko.observableArray();
+
   this.handleValor = function () {
     const valor = this.valor();
     if(!valor) return;
@@ -23,7 +26,11 @@ function AppViewModel() {
       alert('Verifique os campos obrigatórios.');
       return;
     }
-    this.despesas.push({descricao: this.descricao(), valor: this.valor()});
+    if(this.tipo() === 'despesa') {
+      this.despesas.push({descricao, valor});
+    } else {
+      this.receitas.push({descricao, valor});
+    }
     this.descricao('');
     this.valor('');
     alert('Salvo com sucesso!');

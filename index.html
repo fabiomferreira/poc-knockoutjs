@@ -12,12 +12,36 @@
   <main>
     <h1>Finanças</h1>
     <form data-bind="submit: salva">
+
       <label for="descricao">Descrição</label>
       <input data-bind="value: descricao" id="descricao" type="text" />
       <label for="valor">Valor</label>
       <input data-bind="textInput: valor, event: {keyup: handleValor}" id="valor" type="text" />
       <button type="submit">Adicionar</button>
+      <label>
+        <input data-bind="checked: tipo" value="despesa" type="radio" /> Despesa
+      </label>
+      <label>
+        <input data-bind="checked: tipo" value="receita" type="radio" /> Receita
+      </label>
     </form>
+
+    <h2>Receitas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th>Valor</th>
+        </tr>
+        </tr>
+      </thead>
+      <tbody data-bind="foreach: receitas">
+        <tr>
+          <td data-bind="text: descricao"></td>
+          <td data-bind="text: valor"></td>
+        </tr>
+      </tbody>
+    </table>
 
     <h2>Despesas</h2>
     <table>
