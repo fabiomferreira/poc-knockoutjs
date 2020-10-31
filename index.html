@@ -10,13 +10,20 @@
 
 <body>
   <main>
+    <h1>Finanças</h1>
     <form data-bind="submit: salva">
       <label for="descricao">Descrição</label>
       <input data-bind="value: descricao" id="descricao" type="text" />
       <label for="valor">Valor</label>
-      <input data-bind="textInput: valor" id="valor" type="text" />
+      <input data-bind="textInput: valor, event: {keyup: handleValor}" id="valor" type="text" />
       <button type="submit">Adicionar</button>
     </form>
+
+    <h2>Despesas</h2>
+    <div data-bind="foreach: despesas">
+      <span data-bind="text: descricao"></span>
+      <span data-bind="text: valor"></span>
+    </div>
 
   </main>
 </body>
